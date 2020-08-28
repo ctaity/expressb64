@@ -12,6 +12,10 @@ const files = {
   },
 };
 
+const cors = require('cors');
+
+app.use(cors());
+
 app.get('/asFile/:file', (req, res) => {
   const data = files[req.params.file];
   const file = Buffer.from(data.b64, 'base64');
