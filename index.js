@@ -12,7 +12,7 @@ const files = {
   },
 };
 
-app.get('/files/:file', (req, res) => {
+app.get('/asFile/:file', (req, res) => {
   const data = files[req.params.file];
   const file = Buffer.from(data.b64, 'base64');
   res.writeHead(200, {
@@ -20,6 +20,11 @@ app.get('/files/:file', (req, res) => {
     'Content-Length': file.length,
   });
   res.end(file);
+});
+
+app.get('/asb64/:file', (req, res) => {
+  const data = files[req.params.file];
+  res.send(data);
 });
 
 app.listen(4000, () => {
